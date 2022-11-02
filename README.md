@@ -9,3 +9,4 @@
 - Typescript
 - React
 - PostgreSQL
+- tailwindcss

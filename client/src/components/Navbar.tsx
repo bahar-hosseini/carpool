@@ -13,7 +13,8 @@ export default function Navbar() {
     <Popover className='relative bg-transparent/20'>
       <div className='mx-auto  px-4 sm:px-6'>
         <div className='flex items-center justify-between  border-gray-100 py-2 md:justify-start md:space-x-5'>
-          <div className='flex justify-start lg:w-0 lg:flex-1'>
+          <div className='flex justify-start lg:w-1 lg:flex-1'>
+
             <a href='#'>
               <img
                 className='h-20 my-0 w-auto '
@@ -21,6 +22,7 @@ export default function Navbar() {
                 alt='logo'
               />
             </a>
+            <a href='#' className='text-xl font-extrabold text-gray-100 py-6'>CARPOOL</a>
           </div>
 
           <Popover.Group as='nav' className='hidden space-x-20 md:flex'>

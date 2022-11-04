@@ -1,7 +1,8 @@
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import logo from '../../src/assets/home_imgs/logo.png'
 import { Link } from 'react-router-dom'
+import { signinContext } from '../providers/SigninProvider'
 
 
 
@@ -10,6 +11,8 @@ function classNames(...classes: any) {
 }
 
 export default function Navbar() {
+  const { isLogin, setIsLogin }: any = useContext(signinContext)
+
   return (
     <Popover className='relative bg-transparent/20'>
       <div className='mx-auto  px-4 sm:px-6'>
@@ -33,29 +36,29 @@ export default function Navbar() {
 
             <Link
               to='/need-ride'
-              className='text-base font-medium text-gray-100 hover:text-orange-500'
+              className='text-medium font-medium text-gray-900 hover:text-orange-500'
             >
-              Need Link ride
+              Need a Ride
             </Link>
             <Link
               to='/post-ride'
-              className='text-base font-medium text-gray-100 hover:text-orange-500'
+              className='text-medium font-medium text-gray-900 hover:text-orange-500'
             >
-              Post Link ride
+              Post a Ride
             </Link>
 
 
           </Popover.Group>
           <div className='hidden items-center justify-end md:flex md:flex-1 lg:w-0'>
-            <Link
-              to='#'
-              className='whitespace-nowrap text-base font-medium text-gray-100 hover:text-orange-500'
+            <button
+              className='whitespace-nowrap text-medium font-medium text-gray-100 hover:text-orange-500'
+              onClick={() => !isLogin ? setIsLogin(true) : setIsLogin(false)}
             >
               Sign in
-            </Link>
+            </button>
             <Link
               to='#'
-              className='ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-700'
+              className='ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-600 px-4 py-2  text-medium font-medium text-white shadow-sm hover:bg-orange-700'
             >
               Sign up
             </Link>
@@ -93,38 +96,6 @@ export default function Navbar() {
               <div className='mt-6'>
                 <nav className='grid gap-y-8'>
                 </nav>
-              </div>
-            </div>
-            <div className='space-y-6 py-6 px-5'>
-              <div className='grid grid-cols-2 gap-y-4 gap-x-8'>
-                <Link
-                  to='#'
-                  className='text-xl font-medium text-gray-900 hover:text-gray-700'
-                >
-                  Pricing
-                </Link>
-
-                <Link
-                  to='#'
-                  className='text-xl font-medium text-gray-900 hover:text-gray-700'
-                >
-                  Docs
-                </Link>
-
-              </div>
-              <div>
-                <Link
-                  to='#'
-                  className='flex w-full items-center justify-center rounded-md border border-transparent bg-orange-600 px-4 py-2 text-xl font-medium text-white shadow-sm hover:bg-orange-700'
-                >
-                  Sign up
-                </Link>
-                <p className='mt-6 text-center text-xl font-medium text-gray-500'>
-                  Existing customer?{' '}
-                  <Link to='#' className='text-orange-600 hover:text-orange-500'>
-                    Sign in
-                  </Link>
-                </p>
               </div>
             </div>
           </div>

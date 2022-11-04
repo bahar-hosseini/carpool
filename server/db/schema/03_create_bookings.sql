@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS bookings CASCADE;
+
+CREATE TABLE bookings (
+  id SERIAL PRIMARY KEY NOT NULL,
+  travel_id INTEGER REFERENCES travel(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  leave_date VARCHAR(255) NOT NULL,
+  return_date VARCHAR(255)
+);

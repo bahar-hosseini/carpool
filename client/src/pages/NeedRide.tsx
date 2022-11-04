@@ -1,11 +1,13 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import './styles/need_ride.css'
 
 const NeedRide = () => {
   return (
     <div>
-      <Navbar />
-      <h1>NeedRide</h1>
+      <div>
+        search bar
+      </div>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import logo from '../../src/assets/home_imgs/logo.png'
+import { Link } from 'react-router-dom'
 
 
 
@@ -12,17 +13,17 @@ export default function Navbar() {
   return (
     <Popover className='relative bg-transparent/20'>
       <div className='mx-auto  px-4 sm:px-6'>
-        <div className='flex items-center justify-between  border-gray-100 py-2 md:justify-start md:space-x-5'>
+        <div className='flex items-center justify-between  border-gray-100 py-0 md:justify-start md:space-x-5'>
           <div className='flex justify-start lg:w-1 lg:flex-1'>
 
-            <a href='#'>
+            <Link to='/'>
               <img
-                className='h-20 my-0 w-auto '
+                className='h-16 my-0 w-auto '
                 src={logo}
                 alt='logo'
               />
-            </a>
-            <a href='#' className='text-xl font-extrabold text-gray-100 py-6'>CARPOOL</a>
+            </Link>
+            <Link to='/' className='text-lg font-extrabold text-gray-100 py-6'>CARPOOL</Link>
           </div>
 
           <Popover.Group as='nav' className='hidden space-x-20 md:flex'>
@@ -30,34 +31,34 @@ export default function Navbar() {
 
             </Popover>
 
-            <a
-              href='#'
-              className='text-xl font-medium text-gray-100 hover:text-orange-500'
+            <Link
+              to='/need-ride'
+              className='text-base font-medium text-gray-100 hover:text-orange-500'
             >
-              Need a ride
-            </a>
-            <a
-              href='#'
-              className='text-xl font-medium text-gray-100 hover:text-orange-500'
+              Need Link ride
+            </Link>
+            <Link
+              to='/post-ride'
+              className='text-base font-medium text-gray-100 hover:text-orange-500'
             >
-              Post a ride
-            </a>
+              Post Link ride
+            </Link>
 
 
           </Popover.Group>
           <div className='hidden items-center justify-end md:flex md:flex-1 lg:w-0'>
-            <a
-              href='#'
-              className='whitespace-nowrap text-xl font-medium text-gray-100 hover:text-orange-500'
+            <Link
+              to='#'
+              className='whitespace-nowrap text-base font-medium text-gray-100 hover:text-orange-500'
             >
               Sign in
-            </a>
-            <a
-              href='#'
-              className='ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-600 px-4 py-2 text-xl font-medium text-white shadow-sm hover:bg-orange-700'
+            </Link>
+            <Link
+              to='#'
+              className='ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-700'
             >
               Sign up
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -96,33 +97,33 @@ export default function Navbar() {
             </div>
             <div className='space-y-6 py-6 px-5'>
               <div className='grid grid-cols-2 gap-y-4 gap-x-8'>
-                <a
-                  href='#'
+                <Link
+                  to='#'
                   className='text-xl font-medium text-gray-900 hover:text-gray-700'
                 >
                   Pricing
-                </a>
+                </Link>
 
-                <a
-                  href='#'
+                <Link
+                  to='#'
                   className='text-xl font-medium text-gray-900 hover:text-gray-700'
                 >
                   Docs
-                </a>
+                </Link>
 
               </div>
               <div>
-                <a
-                  href='#'
+                <Link
+                  to='#'
                   className='flex w-full items-center justify-center rounded-md border border-transparent bg-orange-600 px-4 py-2 text-xl font-medium text-white shadow-sm hover:bg-orange-700'
                 >
                   Sign up
-                </a>
+                </Link>
                 <p className='mt-6 text-center text-xl font-medium text-gray-500'>
                   Existing customer?{' '}
-                  <a href='#' className='text-orange-600 hover:text-orange-500'>
+                  <Link to='#' className='text-orange-600 hover:text-orange-500'>
                     Sign in
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

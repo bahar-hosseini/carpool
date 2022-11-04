@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS travel CASCADE;
 CREATE TABLE travel (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  car_brand TEXT NOT NULL,
   car_model TEXT NOT NULL,
   car_color TEXT NOT NULL,
   car_year INTEGER NOT NULL,

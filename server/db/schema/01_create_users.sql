@@ -5,6 +5,6 @@ CREATE TABLE users (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255),
-  request_ride BOOLEAN,
-  location INTEGER  NOT NULL DEFAULT 0
+  post_ride BOOLEAN,
+  location character varying(255) NOT NULL
 );

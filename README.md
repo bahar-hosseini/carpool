@@ -14,7 +14,6 @@
 - React
 - PostgreSQL
 - tailwindcss
-- bcrypt
 - jsonwebtoken
 
 ### Getting Started

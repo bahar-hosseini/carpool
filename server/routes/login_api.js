@@ -6,18 +6,23 @@ const router = express.Router();
 const queryUser = require('../db/queries/user_login');
 const generateToken = require('../utils/generate_token.js');
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
   // const { email, password } = req.body;
-  const email = 'bahar.h@gmail.com';
+  const email = 'bahar2.h@gmail.com';
   console.log('email', email);
   queryUser
     .getUser(email)
     .then((response) => {
       if (response) {
         res.json({
-          response,
+          userId: response.id.toString(),
+          email: response.email,
           token: generateToken(response.id),
         });
+      } else {
+        const error = new Error('Your username and/or password is incorrect');
+        error.statuscode = 422;
+        throw error;
       }
     })
     .catch((err) => {

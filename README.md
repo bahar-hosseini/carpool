@@ -8,7 +8,7 @@
 
 
 ### Tech Stack
-- Node
+- Node.js
 - Express
 - Typescript
 - React

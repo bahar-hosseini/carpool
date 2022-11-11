@@ -6,16 +6,15 @@ const router = express.Router();
 const queryUser = require('../db/queries/user_login');
 const generateToken = require('../utils/generate_token.js');
 
+// Post request for Login page
 router.post('/', (req, res) => {
   const { email, password } = req.body;
 
-  console.log('email', email);
-  console.log('password', password);
   queryUser
     .getUser(email, password)
+
     .then((response) => {
       if (response) {
-        console.log(response);
         res.json({
           userId: response.id.toString(),
           email: response.email,

@@ -1,4 +1,3 @@
-// const { password } = require('pg/lib/defaults');
 const db = require('../../configs/db.config');
 
 // Query the information for a single user based on its ID

@@ -6,6 +6,7 @@ import NeedRide from './pages/NeedRide';
 import PostRide from './pages/PostRide';
 import Signin from './components/Signin';
 import SigninProvider from './providers/SigninProvider'
+import Signup from './components/Signup';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path='/need-ride' element={<NeedRide />} />
           <Route path='/post-ride' element={<PostRide />} />
           <Route path='/signin' element={<Signin />} />
+          <Route path='/signup' element={<Signup />} />
         </Routes>
       </SigninProvider>
     </div>

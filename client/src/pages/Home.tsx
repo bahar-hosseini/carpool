@@ -15,7 +15,7 @@ const Home = () => {
     <div>
       <header className='bg'>
         <Navbar />
-        {isLogin && <Signin />}
+        {!isLogin && <Signin />}
       </header>
       < NeedRide />
     </div>

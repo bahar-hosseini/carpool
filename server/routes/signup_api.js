@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const { application } = require('express');
-const saltRound = 10;
+const saltRounds = 10;
 
 //* Internal module
 const userRegister = require('../db/queries/user_signup');
@@ -15,15 +15,17 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 router.post('/', (req, res) => {
   const { fullname, email, password } = req.body;
 
-  userRegister
-    .addUser(fullname, email, password)
+  bcrypt.hash(password, saltRounds, function (err, hash) {
+    userRegister
+      .addUser(fullname, email, hash)
 
-    .then((response) => {
-      console.log(response, 'successfully sign up');
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+      .then((response) => {
+        console.log(response, 'successfully sign up');
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
 });
 
 module.exports = router;

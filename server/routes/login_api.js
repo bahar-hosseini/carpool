@@ -12,26 +12,24 @@ const generateToken = require('../utils/generate_token.js');
 
 router.post('/', (req, res) => {
   const { email, password } = req.body;
-
-  queryUser
-    .getUser(email, password)
-
-    .then((response) => {
-      if (response) {
-        res.json({
-          userId: response.id.toString(),
-          email: response.email,
-          token: generateToken(response.id),
-        });
-      } else {
-        const error = new Error('Your username and/or password is incorrect');
-        error.statuscode = 422;
-        throw error;
-      }
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+  queryUser.getUserEmail(email).then((response) => {
+    if (response) {
+      bcrypt.compare(password, response.password, function (err, result) {
+        if (result) {
+          console.log('successfully logged-in');
+          res.json({
+            userId: response.id.toString(),
+            email: response.email,
+            token: generateToken(response.id),
+          });
+        } else {
+          const error = new Error('Your username and/or password is incorrect');
+          error.statuscode = 422;
+          throw error;
+        }
+      });
+    }
+  });
 });
 
 module.exports = router;

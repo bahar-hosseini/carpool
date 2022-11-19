@@ -1,7 +1,9 @@
-import { createContext, useState, useContext } from 'react'
+import { createContext, useState, useContext, useEffect } from 'react'
+import axios from 'axios';
+
 
 interface signinInterface {
-  isLogin?: any;
+  isLogin?: boolean;
   setIsLogin?: any;
 }
 
@@ -12,6 +14,13 @@ export const useSignin = () => useContext(signinContext)
 
 export default function SigninProvider(props: any) {
   const [isLogin, setIsLogin] = useState(false)
+  useEffect(() => {
+    axios.get('/api/login').then((res) => {
+      if (res) {
+        setIsLogin(() => true)
+      }
+    })
+  }, [])
 
   const providerData = {
     isLogin,

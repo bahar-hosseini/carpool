@@ -1,4 +1,4 @@
-// declarations
+//* declarations
 require('dotenv').config();
 const { ENVIROMENT, PORT } = process.env;
 const express = require('express');
@@ -8,22 +8,22 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-// middleware setup
+//* middleware setup
 app.use(morgan(ENVIROMENT));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-/**
- * internal modules
- **/
 
+//* internal modules
 const loginApiRoute = require('./routes/login_api');
+const signUpApiRoute = require('./routes/signup_api');
 
 app.get('/', (req, res) => {
   res.json({ greetings: 'hello world' });
 });
 
-// ROUTS
+//* ROUTS
 app.use('/api/login', loginApiRoute);
+app.use('/api/signup', signUpApiRoute);
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
 

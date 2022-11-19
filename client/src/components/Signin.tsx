@@ -1,6 +1,32 @@
-import React from 'react'
+import { useState, useContext } from 'react'
+import axios from 'axios'
+import { signinContext } from '../providers/SigninProvider'
 
 const Signin = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { setIsLogin }: any = useContext(signinContext)
+
+
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault()
+
+    axios
+      .post(`/api/login`, JSON.stringify({ email, password }), {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      })
+      .then(() => {
+        setIsLogin(() => true)
+        setEmail('')
+        setPassword('')
+      })
+
+      .catch((err) => {
+        console.log(err, 'EMAIL NOT FOUND')
+      })
+  }
+
   return (
     <div>
       {/*  component  */}
@@ -14,15 +40,15 @@ const Signin = () => {
               <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-6 h-6" alt="" /> <span>Login with Google</span>
             </button>
           </div>
-          <form action="" className="my-10">
+          <form action="" className="my-10" onSubmit={handleSubmit}>
             <div className="flex flex-col space-y-5">
               <label htmlFor="email">
                 <p className="font-medium text-slate-700 pb-2">Email address</p>
-                <input id="email" name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" />
+                <input id="email" name="email" type="email" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter email address" value={email} onChange={(e) => setEmail(e.target.value)} />
               </label>
               <label htmlFor="password">
                 <p className="font-medium text-slate-700 pb-2">Password</p>
-                <input id="password" name="password" type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" />
+                <input id="password" name="password" type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
               </label>
               <div className="flex flex-row justify-between">
                 <div>
@@ -41,7 +67,7 @@ const Signin = () => {
                 </svg>
                 <span>Login</span>
               </button>
-              <p className="text-center">Not registered yet? <a href="#" className="text-gray-900 hover:text-orange-600 font-medium inline-flex space-x-1 items-center"><span>Register now </span><span><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <p className="text-center">Not registered yet? <a href="/signin" className="text-gray-900 hover:text-orange-600 font-medium inline-flex space-x-1 items-center"><span>Register now </span><span><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg></span></a></p>
             </div>

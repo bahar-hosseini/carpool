@@ -1,12 +1,15 @@
-//External Modules
+//*External Modules
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
+const saltRound = 10;
 
-//Internal Modules
+//*Internal Modules
 const queryUser = require('../db/queries/user_login');
 const generateToken = require('../utils/generate_token.js');
 
-// Post request for Login page
+//*  Post request for Login page
+
 router.post('/', (req, res) => {
   const { email, password } = req.body;
 

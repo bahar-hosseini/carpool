@@ -1,6 +1,6 @@
 const db = require('../../configs/db.config');
 
-// Query the information for a single user based on its ID
+//* Query the information for a single user based on its ID
 const getUser = (email, password) => {
   return db
     .query(

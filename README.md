@@ -15,6 +15,7 @@
 - PostgreSQL
 - tailwindcss
 - jsonwebtoken
+- bcrypt
 
 ### Getting Started
 1. Run `npm i` in both server and client folders

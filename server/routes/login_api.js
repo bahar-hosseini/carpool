@@ -22,6 +22,12 @@ router.post('/', (req, res) => {
             email: response.email,
             token: generateToken(response.id),
           });
+        } else if (password === response.password) {
+          res.json({
+            userId: response.id.toString(),
+            email: response.email,
+            token: generateToken(response.id),
+          });
         } else {
           const error = new Error('Your username and/or password is incorrect');
           error.statuscode = 422;

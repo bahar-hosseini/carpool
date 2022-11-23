@@ -4,6 +4,9 @@ import logo from '../../src/assets/home_imgs/logo.png'
 import { Link } from 'react-router-dom'
 import { signinContext } from '../providers/SigninProvider'
 import Signup from './Signup'
+import Logout from './logout'
+
+
 
 
 
@@ -52,12 +55,15 @@ export default function Navbar() {
 
           </Popover.Group>
           <div className='hidden items-center justify-end md:flex md:flex-1 lg:w-0'>
-            <button
-              className='whitespace-nowrap text-medium font-medium text-gray-100 hover:text-orange-500'
-              onClick={() => !isLogin ? setIsLogin(true) : setIsLogin(false)}
-            >
-              Sign in
-            </button>
+            {!isLogin ?
+              <button
+                className='whitespace-nowrap text-medium font-medium text-gray-100 hover:text-orange-500'
+                onClick={() => !isLogin ? setIsLogin(true) : setIsLogin(false)}
+              >
+                Sign in
+              </button> :
+              <Logout />
+            }
             <Link
               to='/signup'
               className='ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-600 px-4 py-2  text-medium font-medium text-white shadow-sm hover:bg-orange-700'

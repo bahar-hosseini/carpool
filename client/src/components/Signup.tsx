@@ -1,5 +1,6 @@
-import axios from "axios"
-import { useState } from "react"
+import { useState, useContext } from 'react'
+import axios from 'axios'
+import { signinContext } from '../providers/SigninProvider'
 
 
 
@@ -9,6 +10,7 @@ const Signup = () => {
   const [fullname, setFullname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { setIsLogin }: any = useContext(signinContext)
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -22,11 +24,17 @@ const Signup = () => {
         setFullname('')
         setEmail('')
         setPassword('')
+      }).then(() => {
+        setIsLogin(() => true)
       })
 
       .catch((err) => {
         console.log(err, 'Could not register')
       })
+  }
+
+  const handleClick = () => {
+    console.log('test')
   }
   return (
     <div>
@@ -37,7 +45,7 @@ const Signup = () => {
           <p className="text-slate-500">Sign up with your google account:</p>
 
           <div className="my-5">
-            <button className="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
+            <button onClick={handleClick} className="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
               <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-6 h-6" alt="" /> <span>Sign up with Google</span>
             </button>
           </div>
@@ -65,9 +73,8 @@ const Signup = () => {
                 </svg>
                 <span>Sign up</span>
               </button>
-              <p className="text-center">Already part of the Carpool Crew? <small>Sign in</small> <a href="#" className="text-gray-900 hover:text-orange-600 font-medium inline-flex space-x-1 items-center"><span><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg></span></a></p>
+              <p className="text-center">Already part of the Carpool Crew?  <a href="/" className="text-gray-900 hover:text-orange-600 font-medium inline-flex space-x-1 items-center"><span><small>Sign in</small>
+              </span></a></p>
             </div>
           </form>
         </div>

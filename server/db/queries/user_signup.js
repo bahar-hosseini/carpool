@@ -18,4 +18,20 @@ RETURNING *;`,
     });
 };
 
-module.exports = { addUser };
+const googleUser = (googleID, name, email) => {
+  return db
+    .query(
+      `INSERT INTO users(google_id,name,email)
+      VALUES($1,$2,$3)
+  RETURNING*;`,
+      [googleID, name, email]
+    )
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+module.exports = { addUser, googleUser };

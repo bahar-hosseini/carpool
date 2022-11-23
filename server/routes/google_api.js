@@ -16,7 +16,7 @@ router.get(
     session: true,
   }),
   (req, res) => {
-    res.redirect(`${http://localhost:3000}`);
+    res.send(req.user);
   }
 );
 

@@ -4,13 +4,11 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const { application } = require('express');
 const saltRounds = 10;
+const passport = require('passport');
 
 //* Internal module
 const userRegister = require('../db/queries/user_signup');
 const queryUser = require('../db/queries/user_login');
-
-//*Google oauth.2
-const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 //* post request for registery
 router.post('/', (req, res) => {

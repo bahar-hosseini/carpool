@@ -14,6 +14,10 @@ export const useSignin = () => useContext(signinContext)
 
 export default function SigninProvider(props: any) {
   const [isLogin, setIsLogin] = useState(false)
+  const [user, setUser] = useState(() => ({
+    loggedIn: false,
+  }))
+
   useEffect(() => {
     axios.get('/api/login').then((res) => {
       if (res) {
@@ -22,9 +26,19 @@ export default function SigninProvider(props: any) {
     })
   }, [])
 
+  useEffect(() => {
+    fetch('http://localhost:8081/account', { credentials: 'include' }).then((res) => {
+      res.json()
+    })
+      .then((data) => {
+        console.log(...(data as any) as any);
+        setUser({ ...(data as any) as any })
+      })
+  }, [])
   const providerData = {
     isLogin,
     setIsLogin,
+    user
   }
   return (
     <signinContext.Provider value={providerData}>

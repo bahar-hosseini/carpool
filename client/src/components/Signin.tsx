@@ -7,6 +7,10 @@ const Signin = () => {
   const [password, setPassword] = useState('')
   const { setIsLogin }: any = useContext(signinContext)
 
+  const handleClick = () => {
+    window.open('http://localhost:8081/auth/google', "_self")
+    setIsLogin(() => true)
+  }
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -36,7 +40,7 @@ const Signin = () => {
           <p className="text-slate-500">Sign in to your account with:</p>
 
           <div className="my-5">
-            <button className="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
+            <button onClick={handleClick} className="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
               <img src="https://www.svgrepo.com/show/355037/google.svg" className="w-6 h-6" alt="" /> <span>Login with Google</span>
             </button>
           </div>

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { signinContext } from '../providers/SigninProvider'
 
@@ -33,8 +33,10 @@ const Signup = () => {
       })
   }
 
+
   const handleClick = () => {
-    console.log('test')
+    window.open('http://localhost:8081/auth/google', "_self")
+    setIsLogin(() => true)
   }
   return (
     <div>
